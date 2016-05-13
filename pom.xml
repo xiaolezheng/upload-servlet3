@@ -5,7 +5,7 @@
   <artifactId>upload</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>upload Maven Webapp</name>
+  <name>upload-servlet3</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>

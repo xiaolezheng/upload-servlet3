@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import com.google.common.hash.HashCode;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -31,7 +32,7 @@ import com.google.common.io.Files;
  */
 
 @WebServlet(description = "文件上传", urlPatterns = { "/upload" })
-@MultipartConfig(location = "/tmp/upload", // 文件存放路径，指定的目录必须存在，否则会抛异常
+@MultipartConfig(location = "/Users/xiaolezheng/data/files", // 文件存放路径，指定的目录必须存在，否则会抛异常
 maxFileSize = 8388608, // 最大上传文件大小,字节为单位
 fileSizeThreshold = 819200 // 当数据量大于该值时，内容将被写入文件。（specification中的解释的大概意思，不知道是不是指Buffer size），大小也是已字节单位
 )
@@ -65,16 +66,16 @@ public class FileUploadServlet extends HttpServlet {
 
                     String newFileName = buildFileName(fileName);
 
-                    String subDir = StringUtils.substring(newFileName, 0, 4);
+                    String subDir = StringUtils.substring(newFileName, 0, 2);
 
-                    File file = new File("/tmp/upload/" + subDir);
+                    File file = new File("/Users/xiaolezheng/data/files/" + subDir);
                     if (!file.exists()) {
                         file.mkdir();
                     }
 
                     part.write(subDir + "/" + newFileName);
 
-                    writer.write("上传成功,fileUrl:" + subDir + "/" + newFileName);
+                    writer.write("/" + subDir + "/" + newFileName);
                 }
             }
 
